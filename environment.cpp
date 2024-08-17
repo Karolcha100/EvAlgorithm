@@ -73,14 +73,10 @@ class Environment
         {
             if (chromosomes[i].get_energy() <= 0)
             {
-                to_death.push_back(i);
+                chromosomes.erase(chromosomes.begin() + i);
+                scores.erase(scores.begin() + i);
+                i--;
             }
-        }
-
-        for (int i = 0; i < to_death.size(); i++)
-        {
-            chromosomes.erase(chromosomes.begin() + to_death[i]);
-            scores.erase(scores.begin() + to_death[i]);
         }
     }
 
