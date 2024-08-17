@@ -15,6 +15,7 @@ using namespace std;
 class Environment
 {
     int rounds = 0;
+
     vector<Chromosome> chromosomes;
     vector<float> scores;
     float energy_to_redistribute = 10000;
@@ -84,22 +85,26 @@ class Environment
     {
         float score_sum = sum_scores();
 
+        int count_of_reproduce = 0;
         for (int i = 0; i < scores.size(); i++)
         {
             for (int j = 0; j < int(200 * scores[i]/score_sum); j++)
             {
+                count_of_reproduce++;
                 Chromosome newborn = chromosomes[i];
                 newborn.mutate();
                 chromosomes.push_back(newborn);
                 scores.push_back(0);
             }
         }
+        std::cout << "Count of reproduce: " << count_of_reproduce << std::endl;
     }
 
 public:
 
     void round()
     {
+        std::cout << "Scores size before " << rounds+1 << " rounds:" << scores.size() << std::endl;
         rounds++;
         calculate_scores();
         calculate_energy_redistribution();
