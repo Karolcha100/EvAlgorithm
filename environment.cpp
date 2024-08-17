@@ -36,7 +36,7 @@ class Environment
 
     void calculate_scores()
     {
-        int n = rnd_int(0, 20);
+        int n = rnd_int(3, 20);
         int w[n];
         int x[n-1];
 
